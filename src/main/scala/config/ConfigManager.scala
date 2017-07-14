@@ -12,10 +12,11 @@ object ConfigManager {
   var mConfPath = ""
   var mPath = ""
   val mProp : Properties = new Properties()
-  getProp(mPath)
+
 
   def setConfPath(iConfPath: String): Unit ={
     mPath = iConfPath+"/application.properties"
+    getProp(mPath)
   }
 
   private def getProp(mConfPath: String) ={
