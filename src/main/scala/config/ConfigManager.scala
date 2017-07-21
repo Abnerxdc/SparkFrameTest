@@ -30,6 +30,13 @@ object ConfigManager {
     mProp.getProperty("sparkcontext.LogLevel","WARN")
   }
 
+  def getKafkaConf() : Properties = {
+    val kafkaPro : Properties = new Properties()
+    kafkaPro.load(new FileInputStream(mConfPath+"/kafkaProducer.properties"))
+    kafkaPro
+  }
+
+
   def getAkkaConf() :(String,String,Int) = {
     val system : String = mProp.getProperty("akka.system","")
     val masterIp : String = mProp.getProperty("akka.master.ip","")
