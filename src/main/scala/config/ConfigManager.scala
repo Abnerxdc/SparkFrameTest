@@ -30,9 +30,15 @@ object ConfigManager {
     mProp.getProperty("sparkcontext.LogLevel","WARN")
   }
 
-  def getKafkaConf() : Properties = {
+  def getKafkaProConf() : Properties = {
     val kafkaPro : Properties = new Properties()
     kafkaPro.load(new FileInputStream(mConfPath+"/kafkaProducer.properties"))
+    kafkaPro
+  }
+
+  def getKafkaConConf() : Properties = {
+    val kafkaPro : Properties = new Properties()
+    kafkaPro.load(new FileInputStream(mConfPath+"/kafkaConsumer.properties"))
     kafkaPro
   }
 

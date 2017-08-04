@@ -25,7 +25,7 @@ object KafkaManager {
 
   def setKafkaManager : KafkaProducer[String,String]= {
     logger.info(" Start init KafkaManager ")
-    val props = ConfigManager.getKafkaConf()
+    val props = ConfigManager.getKafkaProConf()
     props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,classOf[StringSerializer].getName)
     props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,classOf[StringSerializer].getName)
     new KafkaProducer[String,String](props)
@@ -38,16 +38,8 @@ object KafkaManager {
   })
 
   def setKafkaConsumer :KafkaConsumer[String , String] = {
-  val props = new Properties()
-    props.put("bootstrap.service","")
-    props.put("bootstrap.service","192.4.11.1:9092")
-    props.put("group.id","1")
-    props.put("enable.auto.commit","true")
-    props.put("session.timeout.ms","30000")
-    props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,classOf[StringSerializer].getName)
-    props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,classOf[StringSerializer].getName)
-    props.put("auto.offset.reset","earliest")
-    props.put("max.partition.fetch.bytes","5120")
+  val props = ConfigManager.getKafkaConConf()
+
     new KafkaConsumer[String , String](props)
   }
 
